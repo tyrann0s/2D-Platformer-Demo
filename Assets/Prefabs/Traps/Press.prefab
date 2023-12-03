@@ -270,9 +270,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b52464759fb1846be206a8c9099138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
+  speedMod: 0.25
   startPoint: {fileID: 5315843929445865188}
   endPoint: {fileID: 5315843929569341834}
-  speed: 0.2
+  movingSpeed: 0.2
   startDelay: 0
   delay: 2
   damageCollider: {fileID: 5315843930723205393}
@@ -346,5 +348,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3028655, y: 0.5411849}
+  m_Size: {x: 0.26, y: 0.5411849}
   m_EdgeRadius: 0

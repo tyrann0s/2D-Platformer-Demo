@@ -16,11 +16,15 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
+    public bool IsImmortal { get; private set; }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animationController = GetComponent<AnimationController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        CameraScript cam = FindObjectOfType<CameraScript>();
+        cam.SetUpCamera(this);
     }
 
     private void Update()
@@ -106,7 +110,11 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        Block block = FindObjectOfType<Block>();
-        block.RespawnPlayer(this);
+        FindObjectOfType<GameManager>().PlayerDied();
+    }
+
+    public void SetGodMode(bool value)
+    {
+        IsImmortal = value;
     }
 }

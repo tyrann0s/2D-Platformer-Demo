@@ -128,10 +128,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d482e3356a6549b4b972e9753fe46398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpImpulseOnDeath: 2
+  jumpImpulseOnDeath: 3
   projectilePrefab: {fileID: 1699249922878194913, guid: 2b134a07d32c56f42b23ac1e770470b9, type: 3}
   shootingPoint: {fileID: 8977544533671533235}
-  shootingDelay: 2
+  shootingDelay: 4
   isFacingLeft: 1
 --- !u!61 &8977544534105941563
 BoxCollider2D:

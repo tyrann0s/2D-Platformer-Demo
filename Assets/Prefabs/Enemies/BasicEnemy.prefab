@@ -116,9 +116,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 096fb32304083e04fbd45e45b23159ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.5
+  speedMod: 0.25
   startPos: {fileID: 5582139168428818407}
   endPos: {fileID: 4949181235983374377}
-  speed: 2
   enemy: {fileID: 8729002876339164046}
 --- !u!1 &4157801946869413310
 GameObject:
@@ -217,7 +218,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf585759fbf9f934a9e14de98560378a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpImpulseOnDeath: 2
+  speed: 0
+  speedMod: 0
+  jumpImpulseOnDeath: 3
 --- !u!61 &7412943682390430945
 BoxCollider2D:
   m_ObjectHideFlags: 0

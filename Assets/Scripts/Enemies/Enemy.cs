@@ -19,7 +19,6 @@ public class Enemy : Threat
 
     private void Die()
     {
-        Debug.Log(gameObject + " died");
         Destroy(gameObject);
     }
 }

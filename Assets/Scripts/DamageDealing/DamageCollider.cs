@@ -13,7 +13,7 @@ public class DamageCollider : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player" && threat.IsWorking)
+        if (collision.gameObject.tag == "Player" && threat.IsWorking && !collision.gameObject.GetComponent<Player>().IsImmortal)
         {
             collision.gameObject.GetComponent<Player>().Die();
         }

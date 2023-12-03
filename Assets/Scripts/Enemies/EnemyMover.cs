@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMover : MonoBehaviour
+public class EnemyMover : Threat
 {
     [SerializeField]
-    private GameObject startPos, endPos;
+    private float speed;
 
     [SerializeField]
-    private float speed;
+    private GameObject startPos, endPos;
 
     [SerializeField]
     private Enemy enemy;
@@ -24,17 +24,17 @@ public class EnemyMover : MonoBehaviour
         {
             while (enemy.transform.position != endPos.transform.position)
             {
-                enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, endPos.transform.position, Speed());
+                enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, endPos.transform.position, SpeedNormalize());
                 yield return new WaitForEndOfFrame();
             }
 
             while (enemy.transform.position != startPos.transform.position)
             {
-                enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, startPos.transform.position, Speed());
+                enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, startPos.transform.position, SpeedNormalize());
                 yield return new WaitForEndOfFrame();
             }
         }
     }
 
-    private float Speed() { return speed / 1000; }
+    private float SpeedNormalize() { return (speed * threatsManager.Speed) / 1000; }
 }

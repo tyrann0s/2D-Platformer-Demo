@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Block : MonoBehaviour
 {
     [SerializeField]
     private GameObject colliders;
+    public GameObject Colliders => colliders;
 
     [SerializeField]
     private float colliderOffset;
 
     [SerializeField]
-    private GameObject spawnPoint;
+    private Tilemap groundTileMap;
+    public Tilemap GroundTileMap => groundTileMap;
 
     private void Start()
     {
@@ -22,8 +25,8 @@ public class Block : MonoBehaviour
         }
     }
 
-    public void RespawnPlayer(Player player)
+    public float GetWidth()
     {
-        player.transform.position = spawnPoint.transform.position;
+        return groundTileMap.cellBounds.size.x * GetComponent<Grid>().cellSize.x;
     }
 }

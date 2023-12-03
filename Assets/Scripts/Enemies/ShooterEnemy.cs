@@ -28,9 +28,9 @@ public class ShooterEnemy : Enemy
             GameObject projGO = Instantiate(projectilePrefab);
             projGO.transform.position = shootingPoint.transform.position;
             Projectile projectile = projGO.GetComponent<Projectile>();
-            projectile.Init(isFacingLeft);
+            projectile.Init(isFacingLeft, threatsManager.Speed);
 
-            yield return new WaitForSeconds(shootingDelay);
+            yield return new WaitForSeconds(shootingDelay / (threatsManager.Speed / 2));
         }
     }
 }

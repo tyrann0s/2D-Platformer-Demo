@@ -9,32 +9,33 @@ public class Projectile : MonoBehaviour
 
     private bool isLeft;
 
-    private Rigidbody2D rigidbody2D;
+    private Rigidbody2D rb2D;
 
     private void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rb2D = GetComponent<Rigidbody2D>();
     }
 
-    public void Init(bool isMovingLeft)
+    public void Init(bool isMovingLeft, float speedMod)
     {
         isLeft = isMovingLeft;
+
+        speed *= speedMod / 2;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && !collision.gameObject.GetComponent<Player>().IsImmortal)
         {
             collision.gameObject.GetComponent<Player>().Die();
         }
 
-        Debug.Log("Getcoll " + collision.gameObject);
         Destroy(gameObject);
     }
 
     private void FixedUpdate()
     {
-        if (isLeft) rigidbody2D.velocity =- transform.right * speed;
-        else rigidbody2D.velocity =- transform.right * speed;
+        if (isLeft) rb2D.velocity =- transform.right * speed;
+        else rb2D.velocity =- -transform.right * speed;
     }
 }
