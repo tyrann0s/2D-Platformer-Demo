@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private float jumpForce;
+    private float jumpForceAdd;
 
     private bool isMovingLeft, isMovingRight, isJumping, isGrounded;
 
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
     {
         isMovingLeft = Input.GetKey(KeyCode.LeftArrow);
         isMovingRight = Input.GetKey(KeyCode.RightArrow);
+
         if (isGrounded) isJumping |= Input.GetKeyDown(KeyCode.UpArrow);
     }
 
@@ -50,6 +52,7 @@ public class Player : MonoBehaviour
 
         if (isJumping)
         {
+            StartCoroutine(HoldJump());
             JumpImpulse(jumpForce);
             isJumping = false;
         }
@@ -75,13 +78,11 @@ public class Player : MonoBehaviour
         if (rb.velocity.x < 0 && isGrounded)
         {
             animationController.Run();
-            
         }
 
         if (rb.velocity.x > 0 && isGrounded)
         {
             animationController.Run();
-            
         }
 
         if (rb.velocity == Vector2.zero) animationController.Idle();
@@ -92,11 +93,25 @@ public class Player : MonoBehaviour
         rb.AddForce(transform.up * force, ForceMode2D.Impulse);
     }
 
+    private IEnumerator HoldJump()
+    {
+        while (Input.GetKey(KeyCode.UpArrow))
+        {
+            jumpForceAdd += .5f;
+            if (jumpForceAdd >= 1)
+            {
+                JumpImpulse(jumpForceAdd); break;
+            }
+            yield return new WaitForSeconds(.1f);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
             isGrounded = true;
+            jumpForceAdd = 0f;
         }
     }
 
