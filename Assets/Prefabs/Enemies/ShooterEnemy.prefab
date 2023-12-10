@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpImpulseOnDeath: 3
+  scoreForKill: 50
   projectilePrefab: {fileID: 1699249922878194913, guid: 2b134a07d32c56f42b23ac1e770470b9, type: 3}
   shootingPoint: {fileID: 8977544533671533235}
   shootingDelay: 4

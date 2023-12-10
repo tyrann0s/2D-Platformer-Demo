@@ -23,6 +23,7 @@ public class BlockManager : MonoBehaviour
         spawnPosition = new Vector3(spawnPosition.x + startingBlock.GetWidth(), startingBlock.transform.position.y);
 
         AddBlock();
+        createdBlocks[0].GetComponent<GenBlock>().IsFirstBlock = true;
 
         startingBlock.SpawnPlayer();
     }

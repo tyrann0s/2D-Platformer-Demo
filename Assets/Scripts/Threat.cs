@@ -12,9 +12,4 @@ public class Threat : MonoBehaviour
     {
         threatsManager = FindObjectOfType<ThreatsManager>();
     }
-
-    private void Start()
-    {
-        
-    }
 }

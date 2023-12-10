@@ -1,11 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : Threat
 {
     [SerializeField]
     private float jumpImpulseOnDeath;
+
+    [SerializeField]
+    private float scoreForKill;
+
+    private GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -19,6 +30,7 @@ public class Enemy : Threat
 
     private void Die()
     {
+        gameManager.AddScore(scoreForKill, transform);
         Destroy(gameObject);
     }
 }
