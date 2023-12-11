@@ -11,12 +11,20 @@ public class EnterBlockTrigger : MonoBehaviour
     private Parallax parallax;
     private GenBlock genBlock;
 
+    [SerializeField]
+    private ParticleSystem vfx;
+
+    [SerializeField]
+    private SpriteRenderer flag;
+
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         blockManager = FindObjectOfType<BlockManager>();
         parallax = FindObjectOfType<Parallax>();
         genBlock = GetComponentInParent<GenBlock>();
+
+        if (genBlock.IsFirstBlock) flag.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -29,7 +37,11 @@ public class EnterBlockTrigger : MonoBehaviour
             parallax.AddBlocks();
 
             isActivated = true;
-            if (!genBlock.IsFirstBlock) gameManager.AddScore(genBlock.ScoreForCompletion, transform);
+            if (!genBlock.IsFirstBlock)
+            {
+                gameManager.AddScore(genBlock.ScoreForCompletion, transform);
+                vfx.Play();
+            }
 
             FindObjectOfType<ThreatsManager>().IncreaseSpeed();
         }
