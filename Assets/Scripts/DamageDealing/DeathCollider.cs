@@ -13,7 +13,7 @@ public class DeathCollider : MonoBehaviour
 
     private void Update()
     {
-        transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
+        if (player != null) transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

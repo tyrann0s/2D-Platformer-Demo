@@ -126,6 +126,8 @@ public class Player : MonoBehaviour
     public void Die()
     {
         FindObjectOfType<GameManager>().PlayerDied();
+
+        Destroy(gameObject);
     }
 
     public void SetGodMode(bool value)
