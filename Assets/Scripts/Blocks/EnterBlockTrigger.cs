@@ -17,6 +17,9 @@ public class EnterBlockTrigger : MonoBehaviour
     [SerializeField]
     private SpriteRenderer flag;
 
+    [SerializeField]
+    private AudioSource enterSound;
+
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -41,6 +44,7 @@ public class EnterBlockTrigger : MonoBehaviour
             {
                 gameManager.AddScore(genBlock.ScoreForCompletion, transform);
                 vfx.Play();
+                enterSound.Play();
             }
 
             FindObjectOfType<ThreatsManager>().IncreaseSpeed();

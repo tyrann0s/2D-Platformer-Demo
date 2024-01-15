@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        uiManager.SetScoreText(Score);
         uiManager.SetComboModText(1);
     }
 
@@ -58,7 +57,6 @@ public class GameManager : MonoBehaviour
     {
         value *= comboMod;
         Score += value;
-        uiManager.SetScoreText(Score);
         uiManager.ScorePopUp(value, startPosition);
 
         StartCoroutine(ActiveCombo());

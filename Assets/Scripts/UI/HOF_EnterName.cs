@@ -14,17 +14,22 @@ public class HOF_EnterName : MonoBehaviour
     [SerializeField]
     private Button acceptButton;
 
+    private UIManager uiManager;
+
     private void Start()
     {
         acceptButton.onClick.AddListener(Proceed);
+        uiManager = FindObjectOfType<UIManager>();
     }
 
     private void Proceed()
     {
+        uiManager.PlayButtonClickSound();
+
         if (IsPlayerNameViable())
         {
             FindObjectOfType<GameManager>().CurrentPlayerName = playerNameText.text;
-            FindObjectOfType<UIManager>().ShowLeaderBoardPanel();
+            uiManager.ShowLeaderBoardPanel();
             gameObject.SetActive(false);
         }
         else ShakeWindow();

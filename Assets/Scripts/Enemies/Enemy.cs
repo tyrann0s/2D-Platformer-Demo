@@ -13,6 +13,9 @@ public class Enemy : Threat
 
     private GameManager gameManager;
 
+    [SerializeField]
+    private AudioSource deathSound;
+
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -30,7 +33,9 @@ public class Enemy : Threat
 
     private void Die()
     {
+        AudioSource.PlayClipAtPoint(deathSound.clip, transform.position);
         gameManager.AddScore(scoreForKill, transform);
+        
         Destroy(gameObject);
     }
 }

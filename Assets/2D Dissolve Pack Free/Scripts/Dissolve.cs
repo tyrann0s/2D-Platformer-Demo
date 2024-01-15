@@ -26,7 +26,7 @@ public class Dissolve : MonoBehaviour
 
     private void DissolveOut()
     {
-        anim.SetTrigger("DissolveOut");
+        anim.Play("Dissolve");
     }
 
     private void DissolveIn()

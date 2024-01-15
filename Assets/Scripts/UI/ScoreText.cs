@@ -35,9 +35,16 @@ public class ScoreText : MonoBehaviour
         }
     }
 
+    private void UpdateScore()
+    {
+        FindObjectOfType<UIManager>().SetScoreText();
+        Debug.Log("azaza");
+    }
+
     private IEnumerator DeathTimer()
     {
         yield return new WaitForSeconds(.5f);
+        FindObjectOfType<UIManager>().SetScoreText();
         Destroy(gameObject);
     }
 }

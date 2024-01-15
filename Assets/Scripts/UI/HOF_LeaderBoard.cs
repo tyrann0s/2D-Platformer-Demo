@@ -40,6 +40,7 @@ public class HOF_LeaderBoard : MonoBehaviour
 
     private void Restart()
     {
+        FindObjectOfType<UIManager>().PlayButtonClickSound();
         FindObjectOfType<GameManager>().ReloadScene();
     }
 }

@@ -13,9 +13,13 @@ public class Press : Threat
     [SerializeField]
     private DamageCollider damageCollider;
 
+    [SerializeField]
+    private AudioSource pressSound;
+
     private void Start()
     {
         damageCollider.transform.position = startPoint.transform.position;
+        pressSound.pitch += Random.value;
         StartCoroutine(Work());
     }
 
@@ -26,6 +30,8 @@ public class Press : Threat
             yield return new WaitForSeconds(DelayTime(startDelay));
 
             IsWorking = true;
+
+            pressSound.Play();
             while (damageCollider.transform.position != endPoint.transform.position)
             {
                 damageCollider.transform.position = Vector3.Lerp(damageCollider.transform.position, endPoint.transform.position, movingSpeed);

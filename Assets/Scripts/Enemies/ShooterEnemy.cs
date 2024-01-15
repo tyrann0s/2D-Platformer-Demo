@@ -16,6 +16,9 @@ public class ShooterEnemy : Enemy
     [SerializeField]
     private bool isFacingLeft;
 
+    [SerializeField]
+    private AudioSource shootSound;
+
     private void Start()
     {
         StartCoroutine(Work());
@@ -29,6 +32,7 @@ public class ShooterEnemy : Enemy
             projGO.transform.position = shootingPoint.transform.position;
             Projectile projectile = projGO.GetComponent<Projectile>();
             projectile.Init(isFacingLeft, threatsManager.Speed);
+            shootSound.Play();
 
             yield return new WaitForSeconds(shootingDelay / (threatsManager.Speed / 2));
         }

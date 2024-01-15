@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Utilities;
 
 public class Player : MonoBehaviour
 {
@@ -19,6 +20,16 @@ public class Player : MonoBehaviour
 
     public bool IsImmortal { get; private set; }
 
+    [Header("Sounds")]
+    [SerializeField]
+    private List<AudioSource> fStepSounds = new List<AudioSource>();
+    [SerializeField]
+    private float fStepInterval;
+    [SerializeField]
+    private AudioSource jumpSound, landSound, deathSound;
+
+    private bool isDead = false;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,10 +41,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        isMovingLeft = Input.GetKey(KeyCode.LeftArrow);
-        isMovingRight = Input.GetKey(KeyCode.RightArrow);
+        isMovingLeft = Input.GetKey(KeyCode.LeftArrow) && !isDead;
+        isMovingRight = Input.GetKey(KeyCode.RightArrow) && !isDead;
 
-        if (isGrounded) isJumping |= Input.GetKeyDown(KeyCode.UpArrow);
+        if (isGrounded) isJumping |= Input.GetKeyDown(KeyCode.UpArrow) && !isDead;
     }
 
     private void FixedUpdate()
@@ -65,27 +76,38 @@ public class Player : MonoBehaviour
 
     private void LateUpdate()
     {
-        if ( rb.velocity.y < 0 && !isGrounded)
+        if ( rb.velocity.y < 0 && !isGrounded && !isDead)
         {
             animationController.Fall();
         }
 
-        if (rb.velocity.y > 0)
+        if (rb.velocity.y > 0 && !isDead)
         {
             animationController.Jump();
         }
 
-        if (rb.velocity.x < 0 && isGrounded)
+        if (rb.velocity.x < 0 && isGrounded && !isDead)
         {
             animationController.Run();
         }
 
-        if (rb.velocity.x > 0 && isGrounded)
+        if (rb.velocity.x > 0 && isGrounded && !isDead)
         {
             animationController.Run();
         }
 
-        if (rb.velocity == Vector2.zero) animationController.Idle();
+        if (rb.velocity == Vector2.zero && !isDead) animationController.Idle();
+    }
+
+    private void FStepSoundPlay()
+    {
+        int rand = Random.Range(0, fStepSounds.Count);
+        fStepSounds[rand].Play();
+    }
+
+    private void JumpSoundPlay()
+    {
+        jumpSound.Play();
     }
 
     public void JumpImpulse(float force)
@@ -112,6 +134,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
             jumpForceAdd = 0f;
+            landSound.Play();
         }
     }
 
@@ -125,8 +148,21 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        FindObjectOfType<GameManager>().PlayerDied();
+        isDead = true;
+        GetComponent<Collider2D>().enabled = false;
+        AudioSource.PlayClipAtPoint(deathSound.clip, transform.position);
 
+        rb.AddForce(-transform.right * 1f, ForceMode2D.Impulse);
+        rb.AddForce(transform.up * 3f, ForceMode2D.Impulse);
+
+        animationController.Dissolve();
+        StartCoroutine(DeathTimer());
+    }
+
+    private IEnumerator DeathTimer()
+    {
+        yield return new WaitForSeconds(1f);
+        FindObjectOfType<GameManager>().PlayerDied();
         Destroy(gameObject);
     }
 

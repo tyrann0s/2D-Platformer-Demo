@@ -22,14 +22,18 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private HOF_LeaderBoard leaderBoardPanel;
 
+    [SerializeField]
+    private AudioSource scoreSound, buttonClickSound;
+
     public void SetTimerText(float time)
     {
         timerText.text = string.Format("{0:00}:{1:00}", TimeSpan.FromSeconds(time).Minutes, TimeSpan.FromSeconds(time).Seconds);
     }
 
-    public void SetScoreText(float value)
+    public void SetScoreText()
     {
-        scoreText.text = value.ToString();
+        scoreText.text = FindObjectOfType<GameManager>().Score.ToString();
+        scoreSound.Play();
     }
 
     public void SetComboModText(int value)
@@ -58,4 +62,6 @@ public class UIManager : MonoBehaviour
         leaderBoardPanel.gameObject.SetActive(true);
         leaderBoardPanel.AddName();
     }
+
+    public void PlayButtonClickSound() { buttonClickSound.Play(); }
 }

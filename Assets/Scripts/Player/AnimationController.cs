@@ -30,4 +30,9 @@ public class AnimationController : MonoBehaviour
     {
         animator.Play("Fall");
     }
+
+    public void Dissolve()
+    {
+        animator.Play("Dissolve");
+    }
 }
