@@ -12,14 +12,17 @@ public class HOF_EnterName : MonoBehaviour
     private Text playerNameText;
 
     [SerializeField]
-    private Button acceptButton;
+    private Button acceptButton, restartButton;
 
+    private GameManager gameManager;
     private UIManager uiManager;
 
     private void Start()
     {
         acceptButton.onClick.AddListener(Proceed);
+        restartButton.onClick.AddListener(Restart);
         uiManager = FindObjectOfType<UIManager>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void Proceed()
@@ -28,7 +31,7 @@ public class HOF_EnterName : MonoBehaviour
 
         if (IsPlayerNameViable())
         {
-            FindObjectOfType<GameManager>().CurrentPlayerName = playerNameText.text;
+            gameManager.CurrentPlayerName = playerNameText.text;
             uiManager.ShowLeaderBoardPanel();
             gameObject.SetActive(false);
         }
@@ -48,5 +51,10 @@ public class HOF_EnterName : MonoBehaviour
         RectTransform rectTransform = GetComponent<RectTransform>();
         DOTween.Sequence(rectTransform.DOPunchPosition(Vector3.left * 5, 1f)).
             Append(rectTransform.DOPunchPosition(-Vector3.left * 5, 1f));
+    }
+
+    private void Restart()
+    {
+        gameManager.ReloadScene();
     }
 }
