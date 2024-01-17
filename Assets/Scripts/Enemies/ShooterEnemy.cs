@@ -26,12 +26,16 @@ public class ShooterEnemy : Enemy
 
     private IEnumerator Work()
     {
+        threatsManager = FindObjectOfType<ThreatsManager>();
+
         for (; ;)
         {
             GameObject projGO = Instantiate(projectilePrefab);
             projGO.transform.position = shootingPoint.transform.position;
+
             Projectile projectile = projGO.GetComponent<Projectile>();
             projectile.Init(isFacingLeft, threatsManager.Speed);
+
             shootSound.Play();
 
             yield return new WaitForSeconds(shootingDelay / (threatsManager.Speed / 2));

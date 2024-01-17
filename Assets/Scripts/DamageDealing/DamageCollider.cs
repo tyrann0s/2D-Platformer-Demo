@@ -6,6 +6,8 @@ public class DamageCollider : MonoBehaviour
 {
     private Threat threat;
 
+    private Player player;
+
     private void Awake()
     {
         threat = GetComponentInParent<Threat>();
@@ -15,7 +17,10 @@ public class DamageCollider : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && threat.IsWorking && !collision.gameObject.GetComponent<Player>().IsImmortal)
         {
-            collision.gameObject.GetComponent<Player>().Die();
+            Debug.Log("DamageCollider + " + threat.IsWorking);
+
+            player = collision.gameObject.GetComponent<Player>();
+            player.Die();
         }
     }
 }

@@ -387,6 +387,7 @@ MonoBehaviour:
   jumpImpulseOnDeath: 3
   scoreForKill: 50
   deathSound: {fileID: 4247974854020782906}
+  damageCollider: {fileID: 2019992269389959582}
   projectilePrefab: {fileID: 1699249922878194913, guid: 2b134a07d32c56f42b23ac1e770470b9, type: 3}
   shootingPoint: {fileID: 8977544533671533235}
   shootingDelay: 4
@@ -428,6 +429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8977544534418469692}
   - component: {fileID: 8977544534418469691}
+  - component: {fileID: 2019992269389959582}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -475,3 +477,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.26, y: 0.20959468}
   m_EdgeRadius: 0
+--- !u!114 &2019992269389959582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8977544534418469693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d256804d1f718f4390aa1c86632f81d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

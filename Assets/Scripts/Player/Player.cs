@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
 
     public void JumpImpulse(float force)
     {
-        rb.AddForce(transform.up * force, ForceMode2D.Impulse);
+        if (!isDead) rb.AddForce(transform.up * force, ForceMode2D.Impulse);
     }
 
     private IEnumerator HoldJump()

@@ -36,5 +36,10 @@ public class EnemyMover : Threat
         }
     }
 
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
+
     private float SpeedNormalize() { return (speed * threatsManager.Speed) / 1000; }
 }
