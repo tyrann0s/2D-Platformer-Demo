@@ -81,6 +81,10 @@ public class Parallax : MonoBehaviour
         SpawnBlock(layer1Prefab, layers1);
         SpawnBlock(layer2Prefab, layers2);
         SpawnBlock(layer3Prefab, layers3);
+
+        SpawnBlock(layer1Prefab, layers1);
+        SpawnBlock(layer2Prefab, layers2);
+        SpawnBlock(layer3Prefab, layers3);
     }
 
     public void DeleteOldBlock(List<ParallaxLayer> layerList)
