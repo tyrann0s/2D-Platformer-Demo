@@ -17,8 +17,6 @@ public class DamageCollider : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && threat.IsWorking && !collision.gameObject.GetComponent<Player>().IsImmortal)
         {
-            Debug.Log("DamageCollider + " + threat.IsWorking);
-
             player = collision.gameObject.GetComponent<Player>();
             player.Die();
         }

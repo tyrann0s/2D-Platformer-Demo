@@ -37,8 +37,6 @@ public class EnterBlockTrigger : MonoBehaviour
             blockManager.AddBlock();
             blockManager.DeleteOldBlock();
 
-            parallax.AddBlocks();
-
             isActivated = true;
             if (!genBlock.IsFirstBlock)
             {

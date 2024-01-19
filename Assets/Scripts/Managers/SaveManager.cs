@@ -51,9 +51,12 @@ public class GameData
 
     public GameData(GameData oldData)
     {
-        foreach (PlayerScore pScore in oldData.HallOfFame)
+        if (oldData != null)
         {
-            HallOfFame.Add(pScore);
+            foreach (PlayerScore pScore in oldData.HallOfFame)
+            {
+                HallOfFame.Add(pScore);
+            }
         }
 
         HallOfFame.Add(new PlayerScore());
@@ -63,12 +66,16 @@ public class GameData
     public class PlayerScore
     {
         public string playerName;
+        public string playerTime;
         public float playerScore;
 
         public PlayerScore()
         {
-            playerName = SaveManager.FindObjectOfType<GameManager>().CurrentPlayerName;
-            playerScore = SaveManager.FindObjectOfType<GameManager>().Score;
+            GameManager gameManager = SaveManager.FindObjectOfType<GameManager>();
+
+            playerName = gameManager.CurrentPlayerName;
+            playerTime = gameManager.GetCurrentTime();
+            playerScore = gameManager.Score;
         }
     }
 }

@@ -1,68 +1,19 @@
 {
     "HallOfFame": [
         {
-            "playerName": "777",
-            "playerScore": 50.0
-        },
-        {
-            "playerName": "Azazel",
+            "playerName": "Test1",
+            "playerTime": "00:16",
             "playerScore": 250.0
         },
         {
-            "playerName": "Dolboeb",
-            "playerScore": 50.0
+            "playerName": "21sec",
+            "playerTime": "00:21",
+            "playerScore": 300.0
         },
         {
-            "playerName": "Egorka",
-            "playerScore": 250.0
-        },
-        {
-            "playerName": "Tyrann0s",
-            "playerScore": 2100.0
-        },
-        {
-            "playerName": "Ololoshka",
-            "playerScore": 1650.0
-        },
-        {
-            "playerName": "Dolboeb",
-            "playerScore": 50.0
-        },
-        {
-            "playerName": "Wuuuhuuuu",
-            "playerScore": 650.0
-        },
-        {
-            "playerName": "SUKA",
-            "playerScore": 50.0
-        },
-        {
-            "playerName": "asdasd",
-            "playerScore": 50.0
-        },
-        {
-            "playerName": "aaaaaaaaaaa",
-            "playerScore": 50.0
-        },
-        {
-            "playerName": "ZZZ",
-            "playerScore": 450.0
-        },
-        {
-            "playerName": "ASDasd",
-            "playerScore": 2500.0
-        },
-        {
-            "playerName": "asdasd",
-            "playerScore": 50.0
-        },
-        {
-            "playerName": "Azazel",
-            "playerScore": 1350.0
-        },
-        {
-            "playerName": "Azazel",
-            "playerScore": 50.0
+            "playerName": "1500x34",
+            "playerTime": "00:34",
+            "playerScore": 1500.0
         }
     ]
 }

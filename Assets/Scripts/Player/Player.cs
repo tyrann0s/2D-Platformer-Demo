@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
 
     private void JumpSoundPlay()
     {
-        jumpSound.Play();
+        if (!jumpSound.isPlaying) jumpSound.Play();
     }
 
     public void JumpImpulse(float force)
@@ -134,7 +134,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
             jumpForceAdd = 0f;
-            landSound.Play();
+            if (!landSound.isPlaying) landSound.Play();
         }
     }
 

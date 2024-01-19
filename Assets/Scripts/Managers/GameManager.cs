@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float comboTime;
 
+    private bool isPlayerDead = false;
+
+    private IEnumerator comboTimer;
+
     private void Awake()
     {
         blockManager = GetComponent<BlockManager>();
@@ -31,15 +35,19 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         uiManager.SetComboModText(1);
+        comboTimer = ActiveCombo();
     }
 
     private void Update()
     {
-        uiManager.SetTimerText(Time.timeSinceLevelLoad);
+        if (!isPlayerDead) uiManager.SetTimerText(Time.timeSinceLevelLoad);
     }
+
+    public string GetCurrentTime() { return uiManager.GetTimerText(); }
 
     public void PlayerDied()
     {
+        isPlayerDead = true;
         uiManager.ShowEnterNamePanel();
     }
 
@@ -55,22 +63,28 @@ public class GameManager : MonoBehaviour
 
     public void AddScore(float value, Transform startPosition)
     {
+        StopCoroutine(comboTimer);
+
         value *= comboMod;
         Score += value;
         uiManager.ScorePopUp(value, startPosition);
 
-        StartCoroutine(ActiveCombo());
+        comboMod += 1;
+        uiManager.SetComboModText(comboMod);
+
+        comboTimer = ActiveCombo();
+        StartCoroutine(comboTimer);
     }
 
     private IEnumerator ActiveCombo()
     {
-        comboMod += 1;
-        uiManager.SetComboModText(comboMod);
+        while (comboMod > 1)
+        {
+            yield return new WaitForSeconds(comboTime);
 
-        yield return new WaitForSeconds(comboTime);
-
-        comboMod -= 1;
-        uiManager.SetComboModText(comboMod);
+            comboMod -= 1;
+            uiManager.SetComboModText(comboMod);
+        }
     }
 
     public void SaveData() 

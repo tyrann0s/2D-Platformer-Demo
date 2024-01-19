@@ -16,12 +16,14 @@ public class Parallax : MonoBehaviour
     [SerializeField]
     private List<GenBlock> blocks;
 
+    [SerializeField]
+    private Vector3 spawnPositionOffset;
+
     private Camera cam;
 
     private void Start()
     {
         cam = FindObjectOfType<Camera>();
-        AddBlocks();
     }
 
     private void Update()
@@ -59,10 +61,10 @@ public class Parallax : MonoBehaviour
         }
     }
 
-    private void SpawnBlock(ParallaxLayer layerPrefab, List<ParallaxLayer> layerList)
+    private void SpawnBlock(ParallaxLayer layerPrefab, List<ParallaxLayer> layerList, Vector3 position)
     {
         ParallaxLayer layer = Instantiate(layerPrefab, transform);
-        layer.transform.position = layerList.Count > 0 ? layerList[layerList.Count-1].SpawnPosition : layer.transform.position;
+        layer.transform.position = position + spawnPositionOffset;
         layer.LoadBlock(GetBlock());
         layerList.Add(layer);
 
@@ -76,22 +78,19 @@ public class Parallax : MonoBehaviour
         return blocks[rand];
     }
 
-    public void AddBlocks()
+    public void AddBlocks(Vector3 position)
     {
-        SpawnBlock(layer1Prefab, layers1);
-        SpawnBlock(layer2Prefab, layers2);
-        SpawnBlock(layer3Prefab, layers3);
-
-        SpawnBlock(layer1Prefab, layers1);
-        SpawnBlock(layer2Prefab, layers2);
-        SpawnBlock(layer3Prefab, layers3);
+        SpawnBlock(layer1Prefab, layers1, position);
+        SpawnBlock(layer2Prefab, layers2, position);
+        SpawnBlock(layer3Prefab, layers3, position);
     }
 
     public void DeleteOldBlock(List<ParallaxLayer> layerList)
     {
         if (layerList.Count > 3)
         {
-            Destroy(layerList[0]);
+            Debug.Log(layerList[0] + "block was deleted");
+            Destroy(layerList[0].gameObject);
             layerList.RemoveAt(0);
         }
     }

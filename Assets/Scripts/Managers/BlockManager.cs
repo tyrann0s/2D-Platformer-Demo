@@ -10,17 +10,24 @@ public class BlockManager : MonoBehaviour
     [SerializeField]
     private List<GenBlock> blocks = new List<GenBlock>();
 
-    [SerializeField]
     private List<GameObject> createdBlocks = new List<GameObject>();
+    public List<GameObject> CreatedBlocks => createdBlocks;
 
     private Vector3 spawnPosition;
 
+    private Parallax parallax;
+
     private void Start()
     {
+        parallax = FindObjectOfType<Parallax>();
+
         spawnPosition = Vector3.zero;
 
         Instantiate(startingBlock, spawnPosition, Quaternion.identity);
-        spawnPosition = new Vector3(spawnPosition.x + startingBlock.GetWidth(), startingBlock.transform.position.y);
+        parallax.AddBlocks(spawnPosition);
+
+        spawnPosition = new Vector3(spawnPosition.x, startingBlock.transform.position.y);
+        
 
         AddBlock();
         createdBlocks[0].GetComponent<GenBlock>().IsFirstBlock = true;
@@ -36,6 +43,7 @@ public class BlockManager : MonoBehaviour
         createdBlocks.Add(block.gameObject);
 
         spawnPosition = new Vector3(spawnPosition.x + blocks[rand].GetWidth(), blocks[rand].transform.position.y);
+        parallax.AddBlocks(spawnPosition);
     }
 
     public void DeleteOldBlock()

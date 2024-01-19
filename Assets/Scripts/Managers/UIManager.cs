@@ -30,6 +30,8 @@ public class UIManager : MonoBehaviour
         timerText.text = string.Format("{0:00}:{1:00}", TimeSpan.FromSeconds(time).Minutes, TimeSpan.FromSeconds(time).Seconds);
     }
 
+    public string GetTimerText() { return timerText.text; }
+
     public void SetScoreText()
     {
         scoreText.text = FindObjectOfType<GameManager>().Score.ToString();
