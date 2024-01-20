@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Dissolve : MonoBehaviour
 {
     Animator anim;
 
-     void Start()
+    void Start()
     {
         anim = GetComponent<Animator>();
     }

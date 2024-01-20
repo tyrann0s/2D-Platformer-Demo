@@ -1,12 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
-using static UnityEditor.FilePathAttribute;
-using static UnityEditor.PlayerSettings;
-using static UnityEditor.ShaderData;
 
 public class ParallaxLayer : MonoBehaviour
 {
@@ -79,7 +73,7 @@ public class ParallaxLayer : MonoBehaviour
         Vector3 origin = tilemap.tileAnchor;
         Vector3 target = new Vector3(tilemap.tileAnchor.x, tilemap.tileAnchor.y + floatForce, tilemap.tileAnchor.z);
 
-        for (;;)
+        for (; ; )
         {
             while (tilemap.tileAnchor.y < target.y)
             {

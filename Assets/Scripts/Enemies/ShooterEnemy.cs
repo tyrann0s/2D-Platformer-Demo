@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShooterEnemy : Enemy
@@ -28,7 +27,7 @@ public class ShooterEnemy : Enemy
     {
         threatsManager = FindObjectOfType<ThreatsManager>();
 
-        for (; ;)
+        for (; ; )
         {
             shootSound.Play();
             GameObject projGO = Instantiate(projectilePrefab);

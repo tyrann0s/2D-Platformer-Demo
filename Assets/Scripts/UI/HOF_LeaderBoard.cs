@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 
 public class HOF_LeaderBoard : MonoBehaviour
 {
@@ -30,7 +29,7 @@ public class HOF_LeaderBoard : MonoBehaviour
         List<GameData.PlayerScore> orderedList = gameManager.LoadHOFPlayerScores().OrderByDescending(x => x.playerScore).ToList();
 
         int place = 1;
-        foreach(GameData.PlayerScore pScore in orderedList)
+        foreach (GameData.PlayerScore pScore in orderedList)
         {
             GameObject go = Instantiate(leaderBoard_Entry_Prefab, tableTransform);
             go.GetComponent<HOF_LeaderBoard_Entry>().SetUp(place, pScore.playerName, pScore.playerTime, pScore.playerScore.ToString());

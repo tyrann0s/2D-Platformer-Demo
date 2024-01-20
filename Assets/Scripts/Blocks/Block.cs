@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -21,7 +19,7 @@ public class Block : MonoBehaviour
         foreach (Transform go in colliders.transform)
         {
             go.GetComponent<SpriteRenderer>().enabled = false;
-            go.GetComponent<Collider2D>().offset = new Vector2 (0, -colliderOffset);
+            go.GetComponent<Collider2D>().offset = new Vector2(0, -colliderOffset);
         }
     }
 

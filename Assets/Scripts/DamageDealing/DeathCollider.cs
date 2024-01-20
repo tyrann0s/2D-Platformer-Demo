@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DeathCollider : MonoBehaviour
@@ -8,7 +6,7 @@ public class DeathCollider : MonoBehaviour
 
     private void Start()
     {
-        player = FindObjectOfType<Player>();        
+        player = FindObjectOfType<Player>();
     }
 
     private void Update()

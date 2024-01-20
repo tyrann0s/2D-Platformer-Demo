@@ -1,19 +1,9 @@
 {
     "HallOfFame": [
         {
-            "playerName": "Test1",
-            "playerTime": "00:16",
-            "playerScore": 250.0
-        },
-        {
-            "playerName": "21sec",
-            "playerTime": "00:21",
-            "playerScore": 300.0
-        },
-        {
-            "playerName": "1500x34",
-            "playerTime": "00:34",
-            "playerScore": 1500.0
+            "playerName": "111",
+            "playerTime": "00:04",
+            "playerScore": 50.0
         }
     ]
 }

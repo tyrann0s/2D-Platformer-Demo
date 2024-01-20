@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -35,7 +33,7 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isLeft) rb2D.velocity =- transform.right * speed;
-        else rb2D.velocity =- -transform.right * speed;
+        if (isLeft) rb2D.velocity = -transform.right * speed;
+        else rb2D.velocity = - -transform.right * speed;
     }
 }

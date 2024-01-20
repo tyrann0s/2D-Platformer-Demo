@@ -1,8 +1,6 @@
 using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class ScoreText : MonoBehaviour
 {
@@ -35,11 +33,10 @@ public class ScoreText : MonoBehaviour
         }
     }
 
-    private void UpdateScore()
-    {
-        FindObjectOfType<UIManager>().SetScoreText();
-        Debug.Log("azaza");
-    }
+    //private void UpdateScore()
+    //{
+    //    FindObjectOfType<UIManager>().SetScoreText();
+    //}
 
     private IEnumerator DeathTimer()
     {

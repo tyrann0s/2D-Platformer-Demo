@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
+using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
-using System;
-using DG.Tweening;
 
 public class HOF_EnterName : MonoBehaviour
 {
@@ -42,7 +40,7 @@ public class HOF_EnterName : MonoBehaviour
     {
         if (playerNameText.text == "") return false;
         if (!playerNameText.text.All(Char.IsLetterOrDigit)) return false;
-        
+
         return true;
     }
 

@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Toggle godModeToggle;
 
-    private BlockManager blockManager;
     private UIManager uiManager;
     private SaveManager saveManager;
 
@@ -27,7 +26,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        blockManager = GetComponent<BlockManager>();
         uiManager = GetComponent<UIManager>();
         saveManager = GetComponent<SaveManager>();
     }
@@ -87,9 +85,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SaveData() 
+    public void SaveData()
     {
-        saveManager.SaveIntoJson(); 
+        saveManager.SaveIntoJson();
     }
+
     public List<GameData.PlayerScore> LoadHOFPlayerScores() { return saveManager.Load().HallOfFame; }
 }

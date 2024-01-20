@@ -1,14 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 public class Parallax : MonoBehaviour
 {
     [SerializeField]
     private ParallaxLayer layer1Prefab, layer2Prefab, layer3Prefab;
-    
+
     private List<ParallaxLayer> layers1 = new List<ParallaxLayer>();
     private List<ParallaxLayer> layers2 = new List<ParallaxLayer>();
     private List<ParallaxLayer> layers3 = new List<ParallaxLayer>();
@@ -89,7 +86,6 @@ public class Parallax : MonoBehaviour
     {
         if (layerList.Count > 3)
         {
-            Debug.Log(layerList[0] + "block was deleted");
             Destroy(layerList[0].gameObject);
             layerList.RemoveAt(0);
         }

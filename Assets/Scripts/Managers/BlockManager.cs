@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,7 +26,7 @@ public class BlockManager : MonoBehaviour
         parallax.AddBlocks(spawnPosition);
 
         spawnPosition = new Vector3(spawnPosition.x, startingBlock.transform.position.y);
-        
+
 
         AddBlock();
         createdBlocks[0].GetComponent<GenBlock>().IsFirstBlock = true;
@@ -40,7 +39,10 @@ public class BlockManager : MonoBehaviour
         int rand = Random.Range(0, blocks.Count);
 
         GenBlock block = Instantiate(blocks[rand], spawnPosition, Quaternion.identity);
+
         createdBlocks.Add(block.gameObject);
+        if (createdBlocks.Count > 2) createdBlocks[createdBlocks.Count - 3].GetComponent<GenBlock>().BlockExit();
+
 
         spawnPosition = new Vector3(spawnPosition.x + blocks[rand].GetWidth(), blocks[rand].transform.position.y);
         parallax.AddBlocks(spawnPosition);

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.Utilities;
 
 public class Player : MonoBehaviour
 {
@@ -76,7 +75,7 @@ public class Player : MonoBehaviour
 
     private void LateUpdate()
     {
-        if ( rb.velocity.y < 0 && !isGrounded && !isDead)
+        if (rb.velocity.y < 0 && !isGrounded && !isDead)
         {
             animationController.Fall();
         }
@@ -128,19 +127,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void SetGround(bool value)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (value)
         {
             isGrounded = true;
             jumpForceAdd = 0f;
             if (!landSound.isPlaying) landSound.Play();
         }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
+        else
         {
             isGrounded = false;
         }

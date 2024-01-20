@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ThreatsManager : MonoBehaviour
@@ -32,6 +30,5 @@ public class ThreatsManager : MonoBehaviour
                 music.pitch = 1.5f;
                 break;
         }
-        
     }
 }
